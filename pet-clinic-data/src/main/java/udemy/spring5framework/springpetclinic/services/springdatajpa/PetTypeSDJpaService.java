@@ -6,7 +6,6 @@ import udemy.spring5framework.springpetclinic.model.PetType;
 import udemy.spring5framework.springpetclinic.repositories.PetTypeRepository;
 import udemy.spring5framework.springpetclinic.services.PetTypeService;
 
-import javax.persistence.Entity;
 import java.util.HashSet;
 import java.util.Set;
 
