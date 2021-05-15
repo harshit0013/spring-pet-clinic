@@ -1,10 +1,12 @@
 package udemy.spring5framework.springpetclinic.services.map;
 
+import org.springframework.stereotype.Service;
 import udemy.spring5framework.springpetclinic.model.Visit;
 import udemy.spring5framework.springpetclinic.services.VisitService;
 
 import java.util.Set;
 
+@Service
 public class VisitMapService extends AbstractMapService<Visit, Long> implements VisitService {
 
     @Override
