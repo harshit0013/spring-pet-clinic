@@ -14,6 +14,7 @@ import udemy.spring5framework.springpetclinic.services.OwnerService;
 import udemy.spring5framework.springpetclinic.services.PetService;
 import udemy.spring5framework.springpetclinic.services.PetTypeService;
 
+import javax.validation.Valid;
 import java.util.Collection;
 
 @Controller
@@ -43,7 +44,7 @@ public class PetController {
         return ownerService.findById(ownerId);
     }
 
-    @InitBinder("")
+    @InitBinder("owner")
     public void initOwnerBinder(WebDataBinder webDataBinder)
     {
         webDataBinder.setDisallowedFields("id");
@@ -60,7 +61,7 @@ public class PetController {
     }
 
     @PostMapping("/pets/new")
-    public String processCreationForm(Owner owner, Pet pet, BindingResult result, ModelMap model)
+    public String processCreationForm(Owner owner,@Valid Pet pet, BindingResult result, ModelMap model)
     {
         if(StringUtils.hasLength(pet.getName())  && pet.isNew() && owner.getPet(pet.getName(), true) != null)
         {
@@ -97,7 +98,7 @@ public class PetController {
         }
         else
         {
-            owner.getPets().add(pet);
+            pet.setOwner(owner);
             petService.save(pet);
             return "redirect:/owners/" + owner.getId();
         }
